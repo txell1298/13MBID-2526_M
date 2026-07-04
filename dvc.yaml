@@ -2,10 +2,14 @@ stages:
   data_visualizacion:
     cmd: python src/data_visualizacion.py
     deps:
-      - src/data_visualizacion.py      
+      - src/data_visualizacion.py
       - data/raw/datos_creditos.csv
       - data/raw/datos_tarjetas.csv
     outs:
       - docs/figures/distribucion_target.png
       - docs/figures/correlacion_heatmap_creditos.png
       - docs/figures/correlacion_heatmap_tarjetas.png
+      - docs/figures/boxplot_variable_numerica_vs_target.png
+      - docs/figures/heatmap_valores_nulos_creditos.png
+      - docs/reports/reporte_eda_creditos.html
+      - docs/reports/reporte_eda_tarjetas.html

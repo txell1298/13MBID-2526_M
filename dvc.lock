@@ -15,9 +15,13 @@ stages:
       isexec: true
     - path: src/data_visualizacion.py
       hash: md5
-      md5: 93d6cccdcc353cfeeb76937a80fad40d
-      size: 2476
+      md5: 63b4946351b40856ec15af5a55574154
+      size: 4614
     outs:
+    - path: docs/figures/boxplot_variable_numerica_vs_target.png
+      hash: md5
+      md5: 913818dc2de99c1f73dbf83400739674
+      size: 18130
     - path: docs/figures/correlacion_heatmap_creditos.png
       hash: md5
       md5: 11ccd739e7e751847eab98ade9c7d523
@@ -30,3 +34,7 @@ stages:
       hash: md5
       md5: bc9c66fc1a8b91659123d9332fc009f9
       size: 22456
+    - path: docs/figures/heatmap_valores_nulos_creditos.png
+      hash: md5
+      md5: c07d4562ff380aa9bd8574f2e4fae3f9
+      size: 29049
