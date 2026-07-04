@@ -1,0 +1,11 @@
+stages:
+  data_visualizacion:
+    cmd: python src/data_visualizacion.py
+    deps:
+      - src/data_visualizacion.py      
+      - data/raw/datos_creditos.csv
+      - data/raw/datos_tarjetas.csv
+    outs:
+      - docs/figures/distribucion_target.png
+      - docs/figures/correlacion_heatmap_creditos.png
+      - docs/figures/correlacion_heatmap_tarjetas.png
