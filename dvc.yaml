@@ -13,3 +13,22 @@ stages:
       - docs/figures/heatmap_valores_nulos_creditos.png
       - docs/reports/reporte_eda_creditos.html
       - docs/reports/reporte_eda_tarjetas.html
+
+
+  test_pandera:
+    cmd: pytest --html=docs/report_basico.html --self-contained-html test/test_data_quality.py -v ||true
+    deps:
+      - data/raw/datos_creditos.csv
+      - data/raw/datos_tarjetas.csv
+      - test/test_data_quality.py
+    outs:
+      - docs/report_basico.html
+      
+  test_ge:
+    cmd: pytest --html=docs/report_ge.html --self-contained-html test/test_data_quality_ge.py -v ||true
+    deps:
+      - data/raw/datos_creditos.csv
+      - data/raw/datos_tarjetas.csv
+      - test/test_data_quality_ge.py
+    outs:
+      - docs/report_ge.html
