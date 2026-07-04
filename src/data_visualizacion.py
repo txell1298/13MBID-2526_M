@@ -12,15 +12,15 @@ warnings.filterwarnings("ignore")
 def visualize_data(
     datos_creditos: str = "data/raw/datos_creditos.csv",
     datos_tarjetas: str = "data/raw/datos_tarjetas.csv",
-    output_dir: str = "docs/figures",
-) -> None:
+    output_dir: str = "docs/figures/" ) -> None:
     """
-    Genera visualizaciones de los datos del escenario mediante gráficos de Seaborn y Matplotlib.
+    Generar visualizaciones de los datos del escenario 
+    mediante gráficos de Seaborn y Matplotlib.
 
     Args:
-        datos_creditos: Ruta al archivo CSV que contiene los datos de créditos.
-        datos_tarjetas: Ruta al archivo CSV que contiene los datos de tarjetas.
-        output_dir: Directorio donde se guardarán las figuras generadas.
+        datos_creditos (str): Ruta al archivo CSV que contiene los datos de créditos.
+        datos_tarjetas (str): Ruta al archivo CSV que contiene los datos de tarjetas.
+        output_dir (str): Directorio donde se guardarán las figuras generadas.
 
     Returns:
         None
@@ -36,7 +36,7 @@ def visualize_data(
 
     sns.set_theme(style="whitegrid")
 
-    # Visualización de la variable objetivo
+    # Gráfico distribución de la variable "target"
     plt.figure(figsize=(10, 6))
     sns.countplot(data=df_creditos, x="falta_pago", palette="viridis")
     plt.title("Distribución de la variable objetivo")
@@ -55,6 +55,17 @@ def visualize_data(
     plt.tight_layout()
     plt.savefig(output_path / "correlacion_heatmap_creditos.png")
     plt.close()
+    
+    # Heatmap de correlaciones entre variables numéricas de tarjetas
+    num_df = df_tarjetas.select_dtypes(include=["float64", "int64"])
+    corr = num_df.corr()
+    plt.figure(figsize=(10, 8))
+    sns.heatmap(corr, annot=True, cmap="coolwarm", fmt=".2f")
+    plt.title("Matriz de correlaciones - Tarjetas")
+    plt.tight_layout()
+    plt.savefig(output_path / "correlacion_heatmap_tarjetas.png")
+    plt.close()
+
 
     print(f"Imágenes guardadas correctamente en: {output_path.resolve()}")
 
