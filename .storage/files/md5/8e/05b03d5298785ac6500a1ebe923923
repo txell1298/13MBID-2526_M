@@ -1,0 +1,97 @@
+REPORTE DE METADATOS DEL DATASET INTEGRADO
+============================================================
+
+Dimensiones del dataset
+------------------------------------------------------------
+Número de filas: 10123
+Número de columnas: 23
+
+Columnas del dataset
+------------------------------------------------------------
+- edad
+- antiguedad_empleado
+- situacion_vivienda
+- ingresos
+- objetivo_credito
+- pct_ingreso
+- tasa_interes
+- estado_credito
+- falta_pago
+- antiguedad_cliente
+- estado_civil
+- estado_cliente
+- gastos_ult_12m
+- genero
+- limite_credito_tc
+- nivel_educativo
+- personas_a_cargo
+- capacidad_pago
+- operaciones_mensuales
+- presion_financiera
+- gasto_promedio_operacion
+- operaciones_mensuales_tarjeta
+- estabilidad_laboral
+
+Tipos de datos
+------------------------------------------------------------
+edad: int64
+antiguedad_empleado: float64
+situacion_vivienda: object
+ingresos: int64
+objetivo_credito: object
+pct_ingreso: float64
+tasa_interes: float64
+estado_credito: int64
+falta_pago: object
+antiguedad_cliente: float64
+estado_civil: object
+estado_cliente: object
+gastos_ult_12m: float64
+genero: object
+limite_credito_tc: float64
+nivel_educativo: object
+personas_a_cargo: float64
+capacidad_pago: float64
+operaciones_mensuales: float64
+presion_financiera: float64
+gasto_promedio_operacion: float64
+operaciones_mensuales_tarjeta: float64
+estabilidad_laboral: float64
+
+Valores nulos por columna
+------------------------------------------------------------
+edad: 0
+antiguedad_empleado: 0
+situacion_vivienda: 0
+ingresos: 0
+objetivo_credito: 0
+pct_ingreso: 0
+tasa_interes: 0
+estado_credito: 0
+falta_pago: 0
+antiguedad_cliente: 0
+estado_civil: 0
+estado_cliente: 0
+gastos_ult_12m: 0
+genero: 0
+limite_credito_tc: 0
+nivel_educativo: 0
+personas_a_cargo: 0
+capacidad_pago: 0
+operaciones_mensuales: 0
+presion_financiera: 0
+gasto_promedio_operacion: 0
+operaciones_mensuales_tarjeta: 0
+estabilidad_laboral: 0
+
+Resumen estadístico de variables numéricas
+------------------------------------------------------------
+               edad  antiguedad_empleado       ingresos   pct_ingreso  tasa_interes  estado_credito  antiguedad_cliente  gastos_ult_12m  limite_credito_tc  personas_a_cargo  capacidad_pago  operaciones_mensuales  presion_financiera  gasto_promedio_operacion  operaciones_mensuales_tarjeta  estabilidad_laboral
+count  10123.000000         10123.000000   10123.000000  10123.000000  10123.000000    10123.000000        10123.000000    10123.000000       10123.000000      10123.000000    10123.000000           10123.000000        10123.000000              10123.000000                   10123.000000         10123.000000
+mean      23.529290             3.929369   50341.743851      0.177241     10.982517        0.246172           35.924430     4405.171096        8632.166956          2.346538        0.177375               5.405784            0.167562                 62.620013                       5.405784             0.166598
+std        1.510814             3.266387   28681.398833      0.109779      3.057769        0.430801            7.984556     3397.356513        9090.354291          1.298942        0.109946               1.955893            0.105205                 26.406616                       1.955893             0.140059
+min       20.000000             0.000000    9600.000000      0.010000      5.420000        0.000000           13.000000      510.000000        1438.300000          0.000000        0.005464               0.833333            0.008858                 19.137931                       0.833333             0.000000
+25%       22.000000             2.000000   33600.000000      0.100000      8.490000        0.000000           31.000000     2156.500000        2555.000000          1.000000        0.095433               3.750000            0.105858                 47.522739                       3.750000             0.076923
+50%       23.000000             4.000000   46000.000000      0.150000     10.990000        0.000000           36.000000     3901.000000        4549.000000          2.000000        0.153846               5.583333            0.146285                 55.800000                       5.583333             0.153846
+75%       25.000000             6.000000   59675.000000      0.240000     13.110000        0.000000           40.000000     4741.000000       11072.500000          3.000000        0.236613               6.750000            0.202714                 65.484236                       6.750000             0.272727
+max       26.000000           123.000000  500000.000000      0.830000     22.110000        1.000000           56.000000    18484.000000       34516.000000          5.000000        0.830000              11.583333            1.546650                190.193182                      11.583333             5.857143
