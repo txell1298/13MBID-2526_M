@@ -118,3 +118,52 @@ stages:
       hash: md5
       md5: 8e05b03d5298785ac6500a1ebe923923
       size: 4807
+  train_model:
+    cmd: python src/train_model.py
+    deps:
+    - path: docs/processed/datos_integrados.csv
+      hash: md5
+      md5: e3b490efcad5a925bc9a696e0186e7c2
+      size: 2054820
+    - path: docs/processed/metadata_datos_integrados.txt
+      hash: md5
+      md5: 8e05b03d5298785ac6500a1ebe923923
+      size: 4807
+    - path: src/train_model.py
+      hash: md5
+      md5: bd93edc7b0a9b98feda46f07eb22b1a7
+      size: 9933
+    outs:
+    - path: docs/figures/confusion_matrix.png
+      hash: md5
+      md5: 351681f5e7734f63d555711c01178cb2
+      size: 19541
+    - path: docs/metrics/train_metrics.json
+      hash: md5
+      md5: 5900e1a544b250bc5ce9148cc44eb845
+      size: 230
+    - path: docs/models/best_model.pkl
+      hash: md5
+      md5: c21c0de763184cbfcdd3192cc7215f36
+      size: 880073
+    - path: docs/models/prod_preprocessor.pkl
+      hash: md5
+      md5: 1cf35a4098bef28f2a17bc64941d2cc8
+      size: 6249
+  test_model:
+    cmd: pytest --html=docs/report_model.html --self-contained-html test/test_train.py
+      -v ||true
+    deps:
+    - path: docs/processed/datos_integrados.csv
+      hash: md5
+      md5: e3b490efcad5a925bc9a696e0186e7c2
+      size: 2054820
+    - path: test/test_train.py
+      hash: md5
+      md5: a19654c16550f57b95dce421024a5b50
+      size: 1973
+    outs:
+    - path: docs/report_model.html
+      hash: md5
+      md5: ebe24785716a6c45880c0c2c1245ef7a
+      size: 33681
