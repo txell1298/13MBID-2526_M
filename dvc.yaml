@@ -42,15 +42,23 @@ stages:
       - docs/processed/datos_integrados.csv
       - docs/processed/metadata_datos_integrados.txt
   
-    train_model:
-      cmd: python src/train_model.py
-      deps:
-        - src/train_model.py
-        - docs/processed/datos_integrados.csv
-        - docs/processed/metadata_datos_integrados.txt
-      outs:
-        - docs/models/best_model.pkl
-        - docs/models/prod_preprocessor.pkl
-        - docs/figures/confusion_matrix.png
-      metrics:
-        - docs/metrics/train_metrics.json
+  train_model:
+    cmd: python src/train_model.py
+    deps:
+      - src/train_model.py
+      - docs/processed/datos_integrados.csv
+      - docs/processed/metadata_datos_integrados.txt
+    outs:
+      - docs/models/best_model.pkl
+      - docs/models/prod_preprocessor.pkl
+      - docs/figures/confusion_matrix.png
+    metrics:
+      - docs/metrics/train_metrics.json
+
+  test_model:
+    cmd: pytest --html=docs/report_model.html --self-contained-html test/test_train.py -v ||true
+    deps:
+      - docs/processed/datos_integrados.csv
+      - test/test_train.py
+    outs:
+      - docs/report_model.html
