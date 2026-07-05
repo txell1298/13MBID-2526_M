@@ -70,11 +70,45 @@ def process_data(datos_creditos: str = "data/raw/datos_creditos.csv",
     # Exportar el DataFrame limpio a un nuevo archivo CSV
     import os
 
-    os.makedirs("data/processed", exist_ok=True)
-    df_integrado.to_csv("data/processed/datos_integrados.csv", index=False, sep=";")
+    os.makedirs(output_dir, exist_ok=True)
 
-    print("Dataset integrado guardado correctamente en data/processed/datos_integrados.csv")
+    df_integrado.to_csv(output_dir + 'datos_integrados.csv', index=False, sep=";")
 
+    ##########################################################################
+    # OPCIÓN EXTRA: generación de reporte de metadatos en formato TXT
+    ##########################################################################
+
+    ruta_reporte_metadata = output_dir + "metadata_datos_integrados.txt"
+
+    with open(ruta_reporte_metadata, "w", encoding="utf-8") as f:
+        f.write("REPORTE DE METADATOS DEL DATASET INTEGRADO\n")
+        f.write("=" * 60 + "\n\n")
+
+        f.write("Dimensiones del dataset\n")
+        f.write("-" * 60 + "\n")
+        f.write(f"Número de filas: {df_integrado.shape[0]}\n")
+        f.write(f"Número de columnas: {df_integrado.shape[1]}\n\n")
+
+        f.write("Columnas del dataset\n")
+        f.write("-" * 60 + "\n")
+        for columna in df_integrado.columns:
+            f.write(f"- {columna}\n")
+
+        f.write("\nTipos de datos\n")
+        f.write("-" * 60 + "\n")
+        for columna, tipo in df_integrado.dtypes.items():
+            f.write(f"{columna}: {tipo}\n")
+
+        f.write("\nValores nulos por columna\n")
+        f.write("-" * 60 + "\n")
+        for columna, nulos in df_integrado.isnull().sum().items():
+            f.write(f"{columna}: {nulos}\n")
+
+        f.write("\nResumen estadístico de variables numéricas\n")
+        f.write("-" * 60 + "\n")
+        f.write(df_integrado.describe().to_string())
+
+    print(f"Reporte de metadatos guardado correctamente en: {ruta_reporte_metadata}")
 
 if __name__ == "__main__":
-    process_data() 
+    process_data()

@@ -39,4 +39,5 @@ stages:
       - data/raw/datos_creditos.csv
       - data/raw/datos_tarjetas.csv
     outs:
-      - data/processed/datos_integrados.csv
+      - docs/processed/datos_integrados.csv
+      - docs/processed/metadata_datos_integrados.txt

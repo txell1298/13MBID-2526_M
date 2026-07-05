@@ -107,10 +107,14 @@ stages:
       isexec: true
     - path: src/data_prep.py
       hash: md5
-      md5: 8cf96be2e1071d0979a95802ceb35225
-      size: 3332
+      md5: 83cf81916341e50bc904c72c32c008dc
+      size: 4683
     outs:
-    - path: data/processed/datos_integrados.csv
+    - path: docs/processed/datos_integrados.csv
       hash: md5
       md5: e3b490efcad5a925bc9a696e0186e7c2
       size: 2054820
+    - path: docs/processed/metadata_datos_integrados.txt
+      hash: md5
+      md5: 8e05b03d5298785ac6500a1ebe923923
+      size: 4807
