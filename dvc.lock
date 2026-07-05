@@ -5,8 +5,8 @@ stages:
     deps:
     - path: data/raw/datos_creditos.csv
       hash: md5
-      md5: 60376e78b46d92c4d908d75e1b068128
-      size: 579336
+      md5: 3b26edd22e8827f890d7cd32efe475b7
+      size: 663047
       isexec: true
     - path: data/raw/datos_tarjetas.csv
       hash: md5
@@ -24,8 +24,8 @@ stages:
       size: 18130
     - path: docs/figures/correlacion_heatmap_creditos.png
       hash: md5
-      md5: 11ccd739e7e751847eab98ade9c7d523
-      size: 67802
+      md5: 0289881e0f34af275205b0dcc1785c0c
+      size: 90331
     - path: docs/figures/correlacion_heatmap_tarjetas.png
       hash: md5
       md5: 9736618fac4225d1825d0c8741028a56
@@ -36,5 +36,81 @@ stages:
       size: 22456
     - path: docs/figures/heatmap_valores_nulos_creditos.png
       hash: md5
-      md5: c07d4562ff380aa9bd8574f2e4fae3f9
-      size: 29049
+      md5: f8e8feb0d8417264a4b7f9314a0b78a2
+      size: 30901
+    - path: docs/reports/reporte_eda_creditos.html
+      hash: md5
+      md5: fd2dc2fedc893157ee02e80571f13d89
+      size: 3856205
+    - path: docs/reports/reporte_eda_tarjetas.html
+      hash: md5
+      md5: 2b84e5b72aca1652537f9b83587ce16c
+      size: 3081266
+  test_pandera:
+    cmd: pytest --html=docs/report_basico.html --self-contained-html test/test_data_quality.py
+      -v ||true
+    deps:
+    - path: data/raw/datos_creditos.csv
+      hash: md5
+      md5: 3b26edd22e8827f890d7cd32efe475b7
+      size: 663047
+      isexec: true
+    - path: data/raw/datos_tarjetas.csv
+      hash: md5
+      md5: 9e197c893925601cd447c81256e8cf07
+      size: 845190
+      isexec: true
+    - path: test/test_data_quality.py
+      hash: md5
+      md5: b2d608b6f9c7716d0e0561bc2e3900b6
+      size: 6888
+    outs:
+    - path: docs/report_basico.html
+      hash: md5
+      md5: 21883a69bda0e3b3aaa203ac24637fed
+      size: 35409
+  test_ge:
+    cmd: pytest --html=docs/report_ge.html --self-contained-html test/test_data_quality_ge.py
+      -v ||true
+    deps:
+    - path: data/raw/datos_creditos.csv
+      hash: md5
+      md5: 3b26edd22e8827f890d7cd32efe475b7
+      size: 663047
+      isexec: true
+    - path: data/raw/datos_tarjetas.csv
+      hash: md5
+      md5: 9e197c893925601cd447c81256e8cf07
+      size: 845190
+      isexec: true
+    - path: test/test_data_quality_ge.py
+      hash: md5
+      md5: 7087638823b028f121722410c0948f6b
+      size: 4919
+    outs:
+    - path: docs/report_ge.html
+      hash: md5
+      md5: 0e70badd54e888b1f830bda833bef135
+      size: 32234
+  data_processing:
+    cmd: python src/data_prep.py
+    deps:
+    - path: data/raw/datos_creditos.csv
+      hash: md5
+      md5: 3b26edd22e8827f890d7cd32efe475b7
+      size: 663047
+      isexec: true
+    - path: data/raw/datos_tarjetas.csv
+      hash: md5
+      md5: 9e197c893925601cd447c81256e8cf07
+      size: 845190
+      isexec: true
+    - path: src/data_prep.py
+      hash: md5
+      md5: 8cf96be2e1071d0979a95802ceb35225
+      size: 3332
+    outs:
+    - path: data/processed/datos_integrados.csv
+      hash: md5
+      md5: e3b490efcad5a925bc9a696e0186e7c2
+      size: 2054820

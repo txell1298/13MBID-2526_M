@@ -1,2 +1,7 @@
 /datos_creditos.csv
 /datos_tarjetas.csv
+
+mlruns
+.storage
+.vscode
+.vscode/changelists.json
