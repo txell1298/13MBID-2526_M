@@ -75,7 +75,7 @@ class PredictionResponse(BaseModel):
     model_info: Dict[str, str]
     
 # Cargar el modelo entrenado
-MODEL_PATH = "docs/models/prod_model.pkl"
+MODEL_PATH = "docs/models/best_model.pkl"
 
 try:
     model = joblib.load(MODEL_PATH)
@@ -86,6 +86,7 @@ except FileNotFoundError:
 except Exception as e:
     print(f"Error al cargar el modelo: {e}")
     model = None
+
 @app.get("/")
 def read_root():
     return {
@@ -122,10 +123,20 @@ def predict(request: PredictionRequest):
         # Convertir la solicitud a un DataFrame
         input_data = pd.DataFrame([request.dict()])
 
+        # Variables derivadas que necesita el modelo
+        input_data["operaciones_mensuales_tarjeta"] = input_data["operaciones_mensuales"]
+
+        if input_data.loc[0, "operaciones_mensuales"] > 0:
+            input_data["gasto_promedio_operacion"] = (
+                input_data["gastos_ult_12m"] / (input_data["operaciones_mensuales"] * 12)
+            )
+        else:
+            input_data["gasto_promedio_operacion"] = 0.0
+
         # Realizar la predicción
         prediction = model.predict(input_data)[0]
         probability = model.predict_proba(input_data)[0]
-
+    
         # Obtener las clases del modelo
         class_labels = model.named_steps["model"].classes_
 
