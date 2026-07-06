@@ -206,6 +206,21 @@ with st.form("prediction_form"):
 
     submitted = st.form_submit_button("Predecir")
 
+# En este proyecto, el formulario recoge variables del cliente, información financiera,
+# situación laboral y actividad bancaria, como edad, ingresos, tasa de interés,
+# estado del crédito, gastos de los últimos 12 meses y operaciones mensuales.
+#
+# EXTRA: algunas variables derivadas no se piden directamente al usuario, sino que se calculan
+#        antes de realizar la predicción. Por ejemplo:
+#
+#        - operaciones_mensuales_tarjeta se obtiene a partir de operaciones_mensuales.
+#        - gasto_promedio_operacion se calcula dividiendo gastos_ult_12m entre las operaciones
+#          estimadas del año.
+#
+#        Estas transformaciones se realizan en la API antes de llamar al modelo, para que
+#        el usuario solo introduzca los datos originales y el sistema genere las variables
+#        necesarias para la predicción.
+
 if submitted:
     input_data = {
         "edad": edad,

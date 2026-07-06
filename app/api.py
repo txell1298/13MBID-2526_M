@@ -136,7 +136,7 @@ def predict(request: PredictionRequest):
         # Realizar la predicción
         prediction = model.predict(input_data)[0]
         probability = model.predict_proba(input_data)[0]
-    
+
         # Obtener las clases del modelo
         class_labels = model.named_steps["model"].classes_
 
